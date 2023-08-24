@@ -1,0 +1,53 @@
+<footer>
+  <p id="anho">
+    &copy; 2020 - balonmano
+  </p>
+
+  <div class="name">
+    name of the developer MOHAMED EL DERKAOUI
+  </div>
+</footer>
+<script>
+  var footer = document.querySelector('footer')
+  var anho = document.querySelector('#anho')
+  var name = document.querySelector('.name')
+
+  // Modify the styles of the footer element
+  footer.style.backgroundColor = 'black'
+  footer.style.color = 'white'
+  footer.style.padding = '1rem'
+  footer.style.marginTop = '1rem'
+  footer.style.textAlign = 'center'
+
+  // You can add more styles here as needed
+  footer.style.borderTop = '1px solid gray'
+  footer.style.position = 'fixed'
+  footer.style.bottom = '0'
+  footer.style.width = '100%'
+  // Modify the styles of the #anho element
+  anho.style.fontWeight = 'bold'
+  anho.style.fontSize = '1.2rem'
+
+  // Modify the styles of the .name element
+  name.style.fontStyle = 'italic'
+  name.style.fontSize = '1rem'
+  name.style.color = 'gray'
+var screenWidth = window.innerWidth;
+
+if (screenWidth <= 768) { // Adjust the breakpoint as needed
+    // Apply mobile styles
+    footer.style.backgroundColor = 'blue';
+    footer.style.padding = '0.5rem';
+    anho.style.fontSize = '1rem';
+    name.style.fontSize = '0.8rem';
+
+} else {
+    // Apply desktop styles
+    footer.style.backgroundColor = 'black';
+    footer.style.padding = '1rem';
+    anho.style.fontSize = '1.2rem';
+    name.style.fontSize = '1rem';
+    
+}
+
+</script>

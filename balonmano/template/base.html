@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>
+        {% block title %}{% endblock %}
+    </title>
+    <!-- 
+        add bootstrap
+     -->
+         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% block style %}{% endblock %}
+    <style>
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>
+            balomnano {% block title2 %}{% endblock %}
+        </h1>
+    </header>
+    {% include includes 'nav.html' %}
+
+    <main>
+    {% block content %}{% endblock %}
+
+    </main>
+    {% include includes 'footer.html' %}
+
+    <script src="{% static 'js/main.js' %}"></script>
+    {% block script %}{% endblock %}
+</body>
+
+</html>

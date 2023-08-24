@@ -1,0 +1,39 @@
+<nav id="myNav">
+    <ul class="nav navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'home' %}">Home</a>
+        </li>
+    </ul>
+</nav>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var nav = document.getElementById("myNav");
+    
+        // Add Bootstrap classes
+        nav.classList.add("navbar", "navbar-expand-md", "navbar-light", "bg-light");
+    
+        // Add custom CSS styles
+        nav.style.padding = "1rem";
+    
+        // Additional responsive adjustments
+        if (window.innerWidth <= 768) {
+            // Adjust styles for mobile
+            nav.classList.add("navbar-expand-sm");
+        } else {
+            // Adjust styles for larger screens
+            nav.classList.remove("navbar-expand-sm");
+        }
+    
+        // Adjust styles when window is resized
+        window.addEventListener("resize", function() {
+            if (window.innerWidth <= 768) {
+                nav.classList.add("navbar-expand-sm");
+            } else {
+                nav.classList.remove("navbar-expand-sm");
+            }
+        });
+    });
+    
+</script>

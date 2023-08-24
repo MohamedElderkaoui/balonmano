@@ -20,13 +20,24 @@ class EquipoAdmin(admin.ModelAdmin):
     list_display = ('nombre', 'ciudad', 'entrenador')
     search_fields = ('nombre', 'ciudad', 'entrenador__nombre', 'entrenador__apellido')
     
-    
+from django.contrib import admin
+from .models import Partido
 
 @admin.register(Partido)
 class PartidoAdmin(admin.ModelAdmin):
     list_display = ('fecha', 'equipo_local', 'equipo_visitante', 'goles_local', 'goles_visitante')
     list_filter = ('equipo_local', 'equipo_visitante')
     date_hierarchy = 'fecha'
+
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        if db_field.name == "equipo_visitante":
+            # Obtén el equipo local actualmente seleccionado (si existe)
+            equipo_local_id = request.GET.get('equipo_local')
+            if equipo_local_id:
+                kwargs["queryset"] = Equipo.objects.exclude(id=equipo_local_id)
+            else:
+                kwargs["queryset"] = Equipo.objects.all()
+        return super().formfield_for_foreignkey(db_field, request, **kwargs)
 
 @admin.register(clasificacion)
 class ClasificacionAdmin(admin.ModelAdmin):

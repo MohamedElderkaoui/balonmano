@@ -8,11 +8,13 @@ from .views import (
     EntrenadorListView,
     EntrenadorDetailView,
     EntrenadorCreateView,
+    index,
 )
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
+    path('', index, name='index'),
     path('jugadores/', JugadorListView.as_view(), name='jugador_list'),
     path('jugadores/<int:pk>/', JugadorDetailView.as_view(), name='jugador_detail'),
     path('jugadores/create/', JugadorCreateView.as_view(), name='jugador_create'),

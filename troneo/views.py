@@ -13,6 +13,9 @@ from django.views import View
 from .models import jugador, entrenador, Equipo, Partido, clasificacion, relacion_entre_jugadores_y_equipos, relacion_entre_entrenadores_y_equipos, relacion_entre_equipos_y_partidos
 from .forms import JugadorForm, EntrenadorForm, EquipoForm, PartidoForm
 from django.http import JsonResponse
+
+def index(request):
+    return HttpResponse("Hello, world. You're at the polls index.")
 class JugadorListView(View):
     def get(self, request):
         players = JsonResponse(list(jugador.objects.all().values()), safe=False)

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load render_table from django_tables2 %}
+
+{% block content %}
+  <h1>{{ title }}</h1>
+  <div id="entrenador-details"></div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const entrenadorData = JSON.parse('{{ data|safe }}'); // Parse the serialized data
+
+      const entrenadorDetailsElement = document.getElementById("entrenador-details");
+
+      // Create HTML elements to display entrenador details
+      const detailsList = document.createElement("ul");
+      for (const [key, value] of Object.entries(entrenadorData[0].fields)) {
+        const listItem = document.createElement("li");
+        if (key === "foto") {
+          listItem.innerHTML = `<img src="${value}" alt="Entrenador Photo">`;
+        } else {
+          listItem.innerHTML = `<b>${key}:</b> ${value}`;
+        }
+        detailsList.appendChild(listItem);
+      }
+
+      // Append the details list to the entrenador details element
+      entrenadorDetailsElement.appendChild(detailsList);
+    });
+  </script>
+{% endblock %}

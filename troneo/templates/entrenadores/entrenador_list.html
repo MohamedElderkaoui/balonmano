@@ -1,0 +1,13 @@
+<!-- jugador_list.html -->
+
+{% extends "base.html" %}  <!-- Replace with your base template -->
+{% load render_table from django_tables2 %}
+{% block title %}lq{% endblock %}
+{% block content %}
+<h1>entrandoers</h1>
+{% render_table table %}
+    {% comment %} 
+    add td action left table detail, edit, delete
+     {% endcomment %}
+     
+{% endblock %}

@@ -1,0 +1,1450 @@
+[
+{
+  "model": "contenttypes.contenttype",
+  "pk": 1,
+  "fields": {
+    "app_label": "admin",
+    "model": "logentry"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 2,
+  "fields": {
+    "app_label": "auth",
+    "model": "permission"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 3,
+  "fields": {
+    "app_label": "auth",
+    "model": "group"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 4,
+  "fields": {
+    "app_label": "auth",
+    "model": "user"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 5,
+  "fields": {
+    "app_label": "contenttypes",
+    "model": "contenttype"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 6,
+  "fields": {
+    "app_label": "sessions",
+    "model": "session"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 7,
+  "fields": {
+    "app_label": "troneo",
+    "model": "entrenador"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 8,
+  "fields": {
+    "app_label": "troneo",
+    "model": "jugador"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 9,
+  "fields": {
+    "app_label": "troneo",
+    "model": "equipo"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 10,
+  "fields": {
+    "app_label": "troneo",
+    "model": "partido"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 11,
+  "fields": {
+    "app_label": "troneo",
+    "model": "clasificacion"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 12,
+  "fields": {
+    "app_label": "troneo",
+    "model": "relacion_entre_jugadores_y_equipos"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 13,
+  "fields": {
+    "app_label": "troneo",
+    "model": "relacion_entre_equipos_y_partidos"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 14,
+  "fields": {
+    "app_label": "troneo",
+    "model": "relacion_entre_entrenadores_y_equipos"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "5i2e6mtsv0ctfl0w0dbwo10uw8fz7xfh",
+  "fields": {
+    "session_data": ".eJxVjEEKwyAQAP_iuYiJupoee88bwu661LRFISan0r8XIYf2OjPMWy147Hk5mmzLmtRVDeryywj5KaWL9MByr5pr2beVdE_0aZuea5LX7Wz_Bhlb7tsYIxAQejOwgAVHPggDGJHkRmA0k5sA2BOiD2FyloIF6zniCEjq8wXSRDd6:1qZ7IH:HbzM_SYS_V8l-4nbOaTxU2y-cx8kQ3G-8eyZtZSAjQ4",
+    "expire_date": "2023-09-07T10:10:25.676Z"
+  }
+},
+{
+  "model": "troneo.jugador",
+  "pk": 1,
+  "fields": {
+    "nombre": "mohamed",
+    "apellido": "merzouk",
+    "edad": 25,
+    "posicion": "derecho latea",
+    "nacionalidad": "esp",
+    "foto": "fotos/Sin_t¦tulo.jpg"
+  }
+},
+{
+  "model": "troneo.jugador",
+  "pk": 2,
+  "fields": {
+    "nombre": "ismaes",
+    "apellido": "merzouk",
+    "edad": 23,
+    "posicion": "derecho latea",
+    "nacionalidad": "esp",
+    "foto": "fotos/MAPA.jpg"
+  }
+},
+{
+  "model": "troneo.entrenador",
+  "pk": 1,
+  "fields": {
+    "nombre": "gonzqalo",
+    "apellido": "perz",
+    "edad": 35,
+    "nacionalidad": "esp",
+    "foto": "fotos/Sin_t¦tulo_jkqui10.jpg"
+  }
+},
+{
+  "model": "troneo.entrenador",
+  "pk": 2,
+  "fields": {
+    "nombre": "luismi",
+    "apellido": "lapota",
+    "edad": 39,
+    "nacionalidad": "esp",
+    "foto": ""
+  }
+},
+{
+  "model": "troneo.equipo",
+  "pk": 1,
+  "fields": {
+    "nombre": "ejea",
+    "ciudad": "Zaragoza",
+    "entrenador": 1,
+    "puntos": 0,
+    "partidos_jugados": 0,
+    "partidos_ganados": 0,
+    "partidos_empatados": 0,
+    "partidos_perdidos": 0,
+    "goles_favor": 0,
+    "goles_contra": 0,
+    "jugadores": [
+      1
+    ]
+  }
+},
+{
+  "model": "troneo.equipo",
+  "pk": 2,
+  "fields": {
+    "nombre": "zaragoza",
+    "ciudad": "Zaragoza",
+    "entrenador": 2,
+    "puntos": 0,
+    "partidos_jugados": 0,
+    "partidos_ganados": 0,
+    "partidos_empatados": 0,
+    "partidos_perdidos": 0,
+    "goles_favor": 0,
+    "goles_contra": 0,
+    "jugadores": [
+      1
+    ]
+  }
+},
+{
+  "model": "troneo.partido",
+  "pk": 1,
+  "fields": {
+    "fecha": "2023-08-24",
+    "equipo_local": 1,
+    "equipo_visitante": 2,
+    "goles_local": 5,
+    "goles_visitante": 0
+  }
+},
+{
+  "model": "troneo.clasificacion",
+  "pk": 1,
+  "fields": {
+    "equipo": 1,
+    "puntos": 0,
+    "partidos_jugados": 0,
+    "partidos_ganados": 0,
+    "partidos_empatados": 0,
+    "partidos_perdidos": 0,
+    "goles_favor": 0,
+    "goles_contra": 0
+  }
+},
+{
+  "model": "troneo.relacion_entre_entrenadores_y_equipos",
+  "pk": 1,
+  "fields": {
+    "entrenador": 1,
+    "equipo": 2
+  }
+},
+{
+  "model": "troneo.relacion_entre_equipos_y_partidos",
+  "pk": 1,
+  "fields": {
+    "equipo": 1,
+    "partido": 1
+  }
+},
+{
+  "model": "troneo.relacion_entre_equipos_y_partidos",
+  "pk": 2,
+  "fields": {
+    "equipo": 2,
+    "partido": 1
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 1,
+  "fields": {
+    "name": "Can add log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "add_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 2,
+  "fields": {
+    "name": "Can change log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "change_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 3,
+  "fields": {
+    "name": "Can delete log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "delete_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 4,
+  "fields": {
+    "name": "Can view log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "view_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 5,
+  "fields": {
+    "name": "Can add permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "add_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 6,
+  "fields": {
+    "name": "Can change permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "change_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 7,
+  "fields": {
+    "name": "Can delete permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "delete_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 8,
+  "fields": {
+    "name": "Can view permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "view_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 9,
+  "fields": {
+    "name": "Can add group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "add_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 10,
+  "fields": {
+    "name": "Can change group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "change_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 11,
+  "fields": {
+    "name": "Can delete group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "delete_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 12,
+  "fields": {
+    "name": "Can view group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "view_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 13,
+  "fields": {
+    "name": "Can add user",
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "codename": "add_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 14,
+  "fields": {
+    "name": "Can change user",
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "codename": "change_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 15,
+  "fields": {
+    "name": "Can delete user",
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "codename": "delete_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 16,
+  "fields": {
+    "name": "Can view user",
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "codename": "view_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 17,
+  "fields": {
+    "name": "Can add content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "add_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 18,
+  "fields": {
+    "name": "Can change content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "change_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 19,
+  "fields": {
+    "name": "Can delete content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "delete_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 20,
+  "fields": {
+    "name": "Can view content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "view_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 21,
+  "fields": {
+    "name": "Can add session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "add_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 22,
+  "fields": {
+    "name": "Can change session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "change_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 23,
+  "fields": {
+    "name": "Can delete session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "delete_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 24,
+  "fields": {
+    "name": "Can view session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "view_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 25,
+  "fields": {
+    "name": "Can add entrenador",
+    "content_type": [
+      "troneo",
+      "entrenador"
+    ],
+    "codename": "add_entrenador"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 26,
+  "fields": {
+    "name": "Can change entrenador",
+    "content_type": [
+      "troneo",
+      "entrenador"
+    ],
+    "codename": "change_entrenador"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 27,
+  "fields": {
+    "name": "Can delete entrenador",
+    "content_type": [
+      "troneo",
+      "entrenador"
+    ],
+    "codename": "delete_entrenador"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 28,
+  "fields": {
+    "name": "Can view entrenador",
+    "content_type": [
+      "troneo",
+      "entrenador"
+    ],
+    "codename": "view_entrenador"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 29,
+  "fields": {
+    "name": "Can add jugador",
+    "content_type": [
+      "troneo",
+      "jugador"
+    ],
+    "codename": "add_jugador"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 30,
+  "fields": {
+    "name": "Can change jugador",
+    "content_type": [
+      "troneo",
+      "jugador"
+    ],
+    "codename": "change_jugador"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 31,
+  "fields": {
+    "name": "Can delete jugador",
+    "content_type": [
+      "troneo",
+      "jugador"
+    ],
+    "codename": "delete_jugador"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 32,
+  "fields": {
+    "name": "Can view jugador",
+    "content_type": [
+      "troneo",
+      "jugador"
+    ],
+    "codename": "view_jugador"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 33,
+  "fields": {
+    "name": "Can add equipo",
+    "content_type": [
+      "troneo",
+      "equipo"
+    ],
+    "codename": "add_equipo"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 34,
+  "fields": {
+    "name": "Can change equipo",
+    "content_type": [
+      "troneo",
+      "equipo"
+    ],
+    "codename": "change_equipo"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 35,
+  "fields": {
+    "name": "Can delete equipo",
+    "content_type": [
+      "troneo",
+      "equipo"
+    ],
+    "codename": "delete_equipo"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 36,
+  "fields": {
+    "name": "Can view equipo",
+    "content_type": [
+      "troneo",
+      "equipo"
+    ],
+    "codename": "view_equipo"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 37,
+  "fields": {
+    "name": "Can add partido",
+    "content_type": [
+      "troneo",
+      "partido"
+    ],
+    "codename": "add_partido"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 38,
+  "fields": {
+    "name": "Can change partido",
+    "content_type": [
+      "troneo",
+      "partido"
+    ],
+    "codename": "change_partido"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 39,
+  "fields": {
+    "name": "Can delete partido",
+    "content_type": [
+      "troneo",
+      "partido"
+    ],
+    "codename": "delete_partido"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 40,
+  "fields": {
+    "name": "Can view partido",
+    "content_type": [
+      "troneo",
+      "partido"
+    ],
+    "codename": "view_partido"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 41,
+  "fields": {
+    "name": "Can add clasificacion",
+    "content_type": [
+      "troneo",
+      "clasificacion"
+    ],
+    "codename": "add_clasificacion"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 42,
+  "fields": {
+    "name": "Can change clasificacion",
+    "content_type": [
+      "troneo",
+      "clasificacion"
+    ],
+    "codename": "change_clasificacion"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 43,
+  "fields": {
+    "name": "Can delete clasificacion",
+    "content_type": [
+      "troneo",
+      "clasificacion"
+    ],
+    "codename": "delete_clasificacion"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 44,
+  "fields": {
+    "name": "Can view clasificacion",
+    "content_type": [
+      "troneo",
+      "clasificacion"
+    ],
+    "codename": "view_clasificacion"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 45,
+  "fields": {
+    "name": "Can add relacion_entre_jugadores_y_equipos",
+    "content_type": [
+      "troneo",
+      "relacion_entre_jugadores_y_equipos"
+    ],
+    "codename": "add_relacion_entre_jugadores_y_equipos"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 46,
+  "fields": {
+    "name": "Can change relacion_entre_jugadores_y_equipos",
+    "content_type": [
+      "troneo",
+      "relacion_entre_jugadores_y_equipos"
+    ],
+    "codename": "change_relacion_entre_jugadores_y_equipos"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 47,
+  "fields": {
+    "name": "Can delete relacion_entre_jugadores_y_equipos",
+    "content_type": [
+      "troneo",
+      "relacion_entre_jugadores_y_equipos"
+    ],
+    "codename": "delete_relacion_entre_jugadores_y_equipos"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 48,
+  "fields": {
+    "name": "Can view relacion_entre_jugadores_y_equipos",
+    "content_type": [
+      "troneo",
+      "relacion_entre_jugadores_y_equipos"
+    ],
+    "codename": "view_relacion_entre_jugadores_y_equipos"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 49,
+  "fields": {
+    "name": "Can add relacion_entre_equipos_y_partidos",
+    "content_type": [
+      "troneo",
+      "relacion_entre_equipos_y_partidos"
+    ],
+    "codename": "add_relacion_entre_equipos_y_partidos"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 50,
+  "fields": {
+    "name": "Can change relacion_entre_equipos_y_partidos",
+    "content_type": [
+      "troneo",
+      "relacion_entre_equipos_y_partidos"
+    ],
+    "codename": "change_relacion_entre_equipos_y_partidos"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 51,
+  "fields": {
+    "name": "Can delete relacion_entre_equipos_y_partidos",
+    "content_type": [
+      "troneo",
+      "relacion_entre_equipos_y_partidos"
+    ],
+    "codename": "delete_relacion_entre_equipos_y_partidos"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 52,
+  "fields": {
+    "name": "Can view relacion_entre_equipos_y_partidos",
+    "content_type": [
+      "troneo",
+      "relacion_entre_equipos_y_partidos"
+    ],
+    "codename": "view_relacion_entre_equipos_y_partidos"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 53,
+  "fields": {
+    "name": "Can add relacion_entre_entrenadores_y_equipos",
+    "content_type": [
+      "troneo",
+      "relacion_entre_entrenadores_y_equipos"
+    ],
+    "codename": "add_relacion_entre_entrenadores_y_equipos"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 54,
+  "fields": {
+    "name": "Can change relacion_entre_entrenadores_y_equipos",
+    "content_type": [
+      "troneo",
+      "relacion_entre_entrenadores_y_equipos"
+    ],
+    "codename": "change_relacion_entre_entrenadores_y_equipos"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 55,
+  "fields": {
+    "name": "Can delete relacion_entre_entrenadores_y_equipos",
+    "content_type": [
+      "troneo",
+      "relacion_entre_entrenadores_y_equipos"
+    ],
+    "codename": "delete_relacion_entre_entrenadores_y_equipos"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 56,
+  "fields": {
+    "name": "Can view relacion_entre_entrenadores_y_equipos",
+    "content_type": [
+      "troneo",
+      "relacion_entre_entrenadores_y_equipos"
+    ],
+    "codename": "view_relacion_entre_entrenadores_y_equipos"
+  }
+},
+{
+  "model": "auth.group",
+  "pk": 1,
+  "fields": {
+    "name": "espa▒ol",
+    "permissions": [
+      [
+        "add_logentry",
+        "admin",
+        "logentry"
+      ],
+      [
+        "change_logentry",
+        "admin",
+        "logentry"
+      ],
+      [
+        "delete_logentry",
+        "admin",
+        "logentry"
+      ],
+      [
+        "view_logentry",
+        "admin",
+        "logentry"
+      ],
+      [
+        "add_group",
+        "auth",
+        "group"
+      ],
+      [
+        "change_group",
+        "auth",
+        "group"
+      ],
+      [
+        "delete_group",
+        "auth",
+        "group"
+      ],
+      [
+        "view_group",
+        "auth",
+        "group"
+      ],
+      [
+        "add_permission",
+        "auth",
+        "permission"
+      ],
+      [
+        "change_permission",
+        "auth",
+        "permission"
+      ],
+      [
+        "delete_permission",
+        "auth",
+        "permission"
+      ],
+      [
+        "view_permission",
+        "auth",
+        "permission"
+      ],
+      [
+        "add_user",
+        "auth",
+        "user"
+      ],
+      [
+        "change_user",
+        "auth",
+        "user"
+      ],
+      [
+        "delete_user",
+        "auth",
+        "user"
+      ],
+      [
+        "view_user",
+        "auth",
+        "user"
+      ],
+      [
+        "add_contenttype",
+        "contenttypes",
+        "contenttype"
+      ],
+      [
+        "change_contenttype",
+        "contenttypes",
+        "contenttype"
+      ],
+      [
+        "delete_contenttype",
+        "contenttypes",
+        "contenttype"
+      ],
+      [
+        "view_contenttype",
+        "contenttypes",
+        "contenttype"
+      ],
+      [
+        "add_session",
+        "sessions",
+        "session"
+      ],
+      [
+        "change_session",
+        "sessions",
+        "session"
+      ],
+      [
+        "delete_session",
+        "sessions",
+        "session"
+      ],
+      [
+        "view_session",
+        "sessions",
+        "session"
+      ],
+      [
+        "add_clasificacion",
+        "troneo",
+        "clasificacion"
+      ],
+      [
+        "change_clasificacion",
+        "troneo",
+        "clasificacion"
+      ],
+      [
+        "delete_clasificacion",
+        "troneo",
+        "clasificacion"
+      ],
+      [
+        "view_clasificacion",
+        "troneo",
+        "clasificacion"
+      ],
+      [
+        "add_entrenador",
+        "troneo",
+        "entrenador"
+      ],
+      [
+        "change_entrenador",
+        "troneo",
+        "entrenador"
+      ],
+      [
+        "delete_entrenador",
+        "troneo",
+        "entrenador"
+      ],
+      [
+        "view_entrenador",
+        "troneo",
+        "entrenador"
+      ],
+      [
+        "add_equipo",
+        "troneo",
+        "equipo"
+      ],
+      [
+        "change_equipo",
+        "troneo",
+        "equipo"
+      ],
+      [
+        "delete_equipo",
+        "troneo",
+        "equipo"
+      ],
+      [
+        "view_equipo",
+        "troneo",
+        "equipo"
+      ],
+      [
+        "add_jugador",
+        "troneo",
+        "jugador"
+      ],
+      [
+        "change_jugador",
+        "troneo",
+        "jugador"
+      ],
+      [
+        "delete_jugador",
+        "troneo",
+        "jugador"
+      ],
+      [
+        "view_jugador",
+        "troneo",
+        "jugador"
+      ],
+      [
+        "add_partido",
+        "troneo",
+        "partido"
+      ],
+      [
+        "change_partido",
+        "troneo",
+        "partido"
+      ],
+      [
+        "delete_partido",
+        "troneo",
+        "partido"
+      ],
+      [
+        "view_partido",
+        "troneo",
+        "partido"
+      ],
+      [
+        "add_relacion_entre_entrenadores_y_equipos",
+        "troneo",
+        "relacion_entre_entrenadores_y_equipos"
+      ],
+      [
+        "change_relacion_entre_entrenadores_y_equipos",
+        "troneo",
+        "relacion_entre_entrenadores_y_equipos"
+      ],
+      [
+        "delete_relacion_entre_entrenadores_y_equipos",
+        "troneo",
+        "relacion_entre_entrenadores_y_equipos"
+      ],
+      [
+        "view_relacion_entre_entrenadores_y_equipos",
+        "troneo",
+        "relacion_entre_entrenadores_y_equipos"
+      ],
+      [
+        "add_relacion_entre_equipos_y_partidos",
+        "troneo",
+        "relacion_entre_equipos_y_partidos"
+      ],
+      [
+        "change_relacion_entre_equipos_y_partidos",
+        "troneo",
+        "relacion_entre_equipos_y_partidos"
+      ],
+      [
+        "delete_relacion_entre_equipos_y_partidos",
+        "troneo",
+        "relacion_entre_equipos_y_partidos"
+      ],
+      [
+        "view_relacion_entre_equipos_y_partidos",
+        "troneo",
+        "relacion_entre_equipos_y_partidos"
+      ],
+      [
+        "add_relacion_entre_jugadores_y_equipos",
+        "troneo",
+        "relacion_entre_jugadores_y_equipos"
+      ],
+      [
+        "change_relacion_entre_jugadores_y_equipos",
+        "troneo",
+        "relacion_entre_jugadores_y_equipos"
+      ],
+      [
+        "delete_relacion_entre_jugadores_y_equipos",
+        "troneo",
+        "relacion_entre_jugadores_y_equipos"
+      ],
+      [
+        "view_relacion_entre_jugadores_y_equipos",
+        "troneo",
+        "relacion_entre_jugadores_y_equipos"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$rer82DnZGaXJ8N2UNGXyhu$HZd8KQ+SmmS/vTqSHcafGtDnPUSoGiU9QAlSjuo3WVg=",
+    "last_login": "2023-08-24T10:10:25.668Z",
+    "is_superuser": true,
+    "username": "mohamed",
+    "first_name": "",
+    "last_name": "",
+    "email": "mderkaoui10@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2023-08-24T09:58:33.745Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 1,
+  "fields": {
+    "action_time": "2023-08-24T10:12:55.266Z",
+    "user": [
+      "mohamed"
+    ],
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "object_id": "1",
+    "object_repr": "espa▒ol",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 2,
+  "fields": {
+    "action_time": "2023-08-24T10:17:43.302Z",
+    "user": [
+      "mohamed"
+    ],
+    "content_type": [
+      "troneo",
+      "jugador"
+    ],
+    "object_id": "1",
+    "object_repr": "mohamed",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 3,
+  "fields": {
+    "action_time": "2023-08-24T10:20:38.910Z",
+    "user": [
+      "mohamed"
+    ],
+    "content_type": [
+      "troneo",
+      "entrenador"
+    ],
+    "object_id": "1",
+    "object_repr": "gonzqalo",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 4,
+  "fields": {
+    "action_time": "2023-08-24T10:20:52.270Z",
+    "user": [
+      "mohamed"
+    ],
+    "content_type": [
+      "troneo",
+      "equipo"
+    ],
+    "object_id": "1",
+    "object_repr": "ejea",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 5,
+  "fields": {
+    "action_time": "2023-08-24T10:23:42.793Z",
+    "user": [
+      "mohamed"
+    ],
+    "content_type": [
+      "troneo",
+      "entrenador"
+    ],
+    "object_id": "2",
+    "object_repr": "luismi",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 6,
+  "fields": {
+    "action_time": "2023-08-24T10:27:48.388Z",
+    "user": [
+      "mohamed"
+    ],
+    "content_type": [
+      "troneo",
+      "jugador"
+    ],
+    "object_id": "2",
+    "object_repr": "ismaes",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 7,
+  "fields": {
+    "action_time": "2023-08-24T10:28:03.576Z",
+    "user": [
+      "mohamed"
+    ],
+    "content_type": [
+      "troneo",
+      "equipo"
+    ],
+    "object_id": "2",
+    "object_repr": "zaragoza",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 8,
+  "fields": {
+    "action_time": "2023-08-24T10:35:35.809Z",
+    "user": [
+      "mohamed"
+    ],
+    "content_type": [
+      "troneo",
+      "partido"
+    ],
+    "object_id": "1",
+    "object_repr": "ejea - zaragoza",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 9,
+  "fields": {
+    "action_time": "2023-08-24T10:36:24.882Z",
+    "user": [
+      "mohamed"
+    ],
+    "content_type": [
+      "troneo",
+      "relacion_entre_equipos_y_partidos"
+    ],
+    "object_id": "1",
+    "object_repr": "ejea - ejea - zaragoza",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 10,
+  "fields": {
+    "action_time": "2023-08-24T10:36:47.214Z",
+    "user": [
+      "mohamed"
+    ],
+    "content_type": [
+      "troneo",
+      "relacion_entre_equipos_y_partidos"
+    ],
+    "object_id": "2",
+    "object_repr": "zaragoza - ejea - zaragoza",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 11,
+  "fields": {
+    "action_time": "2023-08-24T10:37:18.363Z",
+    "user": [
+      "mohamed"
+    ],
+    "content_type": [
+      "troneo",
+      "relacion_entre_entrenadores_y_equipos"
+    ],
+    "object_id": "1",
+    "object_repr": "gonzqalo - zaragoza",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 12,
+  "fields": {
+    "action_time": "2023-08-24T10:37:57.743Z",
+    "user": [
+      "mohamed"
+    ],
+    "content_type": [
+      "troneo",
+      "clasificacion"
+    ],
+    "object_id": "1",
+    "object_repr": "ejea",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+}
+]

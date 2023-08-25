@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Home</h1><!-- jugador_form.html -->
+    <form id="jugador-form" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+    </form>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.querySelector('#jugador-form');
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const formData = new FormData(form);
+    
+                // Perform client-side validation here if needed
+    
+                const jsonData = {};
+                formData.forEach((value, key) => {
+                    jsonData[key] = value;
+                });
+    
+                // Send jsonData to the server or store it locally as needed
+            });
+        });
+    </script>
+    
+{% endblock %}

@@ -1,3 +1,14 @@
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from .models import jugador
+from .tables import JugadorTable, entrenadorTable
+from django.shortcuts import render
+from .forms import JugadorForm, EntrenadorForm, EquipoForm, PartidoForm
+from django_tables2 import SingleTableView, SingleTableMixin
+from django_tables2.export.views import ExportMixin
+# jsonresponse
+from django.http import JsonResponse
+# importamos el serialized 
+from django.core.serializers import serialize
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
@@ -14,44 +25,61 @@ from .models import jugador, entrenador, Equipo, Partido, clasificacion, relacio
 from .forms import JugadorForm, EntrenadorForm, EquipoForm, PartidoForm
 from django.http import JsonResponse
 
-def index(request):
-    return HttpResponse("Hello, world. You're at the polls index.")
-class JugadorListView(View):
-    def get(self, request):
-        players = JsonResponse(list(jugador.objects.all().values()), safe=False)
-        cntx = {'players': players}
-        return render(request, 'jugador_list.html',cntx)
+def home(request):
+    return render(request, 'troneo/home.html')
+
+class JugadorListView(ListView):
+    model = jugador
+    table_class = JugadorTable
+    form_class = JugadorForm
+    template_name = 'jugadores/jugador_list.html'
+    
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Jugadores'
-        context['title2'] = 'Jugadores'
-        c
+        table = JugadorTable(jugador.objects.all())
+        table.paginate(page=self.request.GET.get("page", 1), per_page=10)
+        context["table"] = table
+        
         return context
+
+# wirh pk of the object jugadores/<pk>
+class JugadorDetailView(DetailView):
+    model = jugador
+    template_name = 'jugadores/jugador_detail.html'
     
-
-class JugadorDetailView(View):
-    def get(self, request, pk):
-        player =JsonResponse(list(jugador.objects.filter(pk=pk).values()), safe=False)
-        return render(request, 'jugador_detail.html', {'player': player})
-
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        jugador_object = jugador.objects.get(pk=self.kwargs['pk'])# Get the jugador object
+        data = {
+            'nombre': jugador_object.nombre,
+            'apellido': jugador_object.apellido,
+            'edad': jugador_object.edad,
+            'posicion': jugador_object.posicion,
+            'nacionalidad': jugador_object.nacionalidad,
+            'foto': jugador_object.foto.url,
+        }
+        # save on json serialized for javascript dom
+        context['data'] = serialize('json', [jugador_object,], fields=('nombre', 'apellido', 'edad', 'posicion', 'nacionalidad', 'foto'))
+        context['url'] = jugador_object.foto.url
+        return context
 class JugadorCreateView(View):
     def get(self, request):
         form = JugadorForm()
-        return render(request, 'jugador_form.html', {'form': form})
+        return render(request, 'jugadores/jugador_form.html', {'form': form})
     
     def post(self, request):
         form = JugadorForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('jugador_list')
-        return render(request, 'jugador_form.html', {'form': form})
+        return render(request, 'jugadores/jugador_form.html', {'form': form})
 
 class JugadorUpdateView(View):
     def get(self, request, pk):
         player = get_object_or_404(jugador, pk=pk)
         form = JugadorForm(instance=player)
-        return render(request, 'jugador_form.html', {'form': form})
+        return render(request, 'jugadores/jugador_form.html', {'form': form})
     
     def post(self, request, pk):
         player = get_object_or_404(jugador, pk=pk)
@@ -59,201 +87,85 @@ class JugadorUpdateView(View):
         if form.is_valid():
             form.save()
             return redirect('jugador_list')
-        return render(request, 'jugador_form.html', {'form': form})
+        return render(request, 'jugadores/jugador_form.html', {'form': form})
 
 class JugadorDeleteView(View):
     def get(self, request, pk):
         player = get_object_or_404(jugador, pk=pk)
-        return render(request, 'jugador_confirm_delete.html', {'player': player})
+        return render(request, 'jugadores/jugador_confirm_delete.html', {'player': player})
     
     def post(self, request, pk):
         player = get_object_or_404(jugador, pk=pk)
         player.delete()
         return redirect('jugador_list')
-    
-class EntrenadorListView(View):
-    def get(self, request):
-        coachs = entrenador.objects.all()
-        return render(request, 'entrenador_list.html', {'coachs': coachs})
 
-class EntrenadorDetailView(View):
-    def get(self, request, pk):
-        coach = get_object_or_404(entrenador, pk=pk)
-        return render(request, 'entrenador_detail.html', {'coach': coach})
+class EntrenadorListView(ListView):
+    model = entrenador
+    table_class = entrenadorTable
+    form_class = EntrenadorForm
+    template_name = 'entrenadores/entrenador_list.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        table = entrenadorTable(entrenador.objects.all())
+        table.paginate(page=self.request.GET.get("page", 1), per_page=10)
+        context["table"] = table
+        
+        return context
+    
+class EntrenadorDetailView(DetailView):
+    model = entrenador
+    template_name = 'entrenadores/entrenador_detail.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        entrenador_object = entrenador.objects.get(pk=self.kwargs['pk'])# Get the entrenador object
+        data = {
+            'nombre': entrenador_object.nombre,
+            'apellido': entrenador_object.apellido,
+            'edad': entrenador_object.edad,
+            'nacionalidad': entrenador_object.nacionalidad,
+            'foto': entrenador_object.foto.url,
+        }
+        # save on json serialized for javascript dom
+        context['data'] = serialize('json', [entrenador_object,], fields=('nombre', 'apellido', 'edad', 'nacionalidad', 'foto'))
+        context['url'] = entrenador_object.foto.url
+        return context
     
 class EntrenadorCreateView(View):
     def get(self, request):
         form = EntrenadorForm()
-        return render(request, 'entrenador_form.html', {'form': form})
+        return render(request, 'entrenadores/entrenador_form.html', {'form': form})
     
     def post(self, request):
         form = EntrenadorForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('entrenador_list')
-        return render(request, 'entrenador_form.html', {'form': form})
-
+        return render(request, 'entrenadores/entrenador_form.html', {'form': form})
+    
 class EntrenadorUpdateView(View):
     def get(self, request, pk):
-        coach = get_object_or_404(entrenador, pk=pk)
-        form = EntrenadorForm(instance=coach)
-        return render(request, 'entrenador_form.html', {'form': form})
+        entrenador_object = get_object_or_404(entrenador, pk=pk)
+        form = EntrenadorForm(instance=entrenador_object)
+        return render(request, 'entrenadores/entrenador_form.html', {'form': form})
     
     def post(self, request, pk):
-        coach = get_object_or_404(entrenador, pk=pk)
-        form = EntrenadorForm(request.POST, request.FILES, instance=coach)
+        entrenador_object = get_object_or_404(entrenador, pk=pk)
+        form = EntrenadorForm(request.POST, request.FILES, instance=entrenador_object)
         if form.is_valid():
             form.save()
             return redirect('entrenador_list')
-        return render(request, 'entrenador_form.html', {'form': form})
+        return render(request, 'entrenadores/entrenador_form.html', {'form': form})
 
 class EntrenadorDeleteView(View):
     def get(self, request, pk):
-        coach = get_object_or_404(entrenador, pk=pk)
-        return render(request, 'entrenador_confirm_delete.html', {'coach': coach})
+        entrenador_object = get_object_or_404(entrenador, pk=pk)
+        return render(request, 'entrenadores/entrenador_confirm_delete.html', {'entrenador': entrenador_object})
     
     def post(self, request, pk):
-        coach = get_object_or_404(entrenador, pk=pk)
-        coach.delete()
+        entrenador_object = get_object_or_404(entrenador, pk=pk)
+        entrenador_object.delete()
         return redirect('entrenador_list')
     
-class EquipoListView(View):
-    def get(self, request):
-        teams = Equipo.objects.all()
-        return render(request, 'equipo_list.html', {'teams': teams})
-
-class EquipoDetailView(View):
-    def get(self, request, pk):
-        team = get_object_or_404(Equipo, pk=pk)
-        return render(request, 'equipo_detail.html', {'team': team})
-
-class EquipoCreateView(View):
-    def get(self, request):
-        form = EquipoForm()
-        return render(request, 'equipo_form.html', {'form': form})
     
-    def post(self, request):
-        form = EquipoForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('equipo_list')
-        return render(request, 'equipo_form.html', {'form': form})
-    
-class EquipoUpdateView(View):
-    def get(self, request, pk):
-        team = get_object_or_404(Equipo, pk=pk)
-        form = EquipoForm(instance=team)
-        return render(request, 'equipo_form.html', {'form': form})
-    
-    def post(self, request, pk):
-        team = get_object_or_404(Equipo, pk=pk)
-        form = EquipoForm(request.POST, request.FILES, instance=team)
-        if form.is_valid():
-            form.save()
-            return redirect('equipo_list')
-        return render(request, 'equipo_form.html', {'form': form})
-
-class EquipoDeleteView(View):
-    def get(self, request, pk):
-        team = get_object_or_404(Equipo, pk=pk)
-        return render(request, 'equipo_confirm_delete.html', {'team': team})
-    
-    def post(self, request, pk):
-        team = get_object_or_404(Equipo, pk=pk)
-        team.delete()
-        return redirect('equipo_list')
-    
-class PartidoListView(View):
-    def get(self, request):
-        matches = Partido.objects.all()
-        return render(request, 'partido_list.html', {'matches': matches})
-    
-class PartidoDetailView(View):
-    def get(self, request, pk):
-        match = get_object_or_404(Partido, pk=pk)
-        return render(request, 'partido_detail.html', {'match': match})
-    
-class PartidoCreateView(View):
-    def get(self, request):
-        form = PartidoForm()
-        return render(request, 'partido_form.html', {'form': form})
-    
-    def post(self, request):
-        form = PartidoForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            # relacion_entre_entrenadores_y_equipos
-            
-            quipo_local = form.cleaned_data['equipo_local']
-            equipo_visitante = form.cleaned_data['equipo_visitante']
-            
-            relacion_entre_equipos_y_partidos.objects.create(equipo=quipo_local, partido=form.instance)
-            relacion_entre_equipos_y_partidos.objects.create(equipo=equipo_visitante, partido=form.instance)
-            
-            return redirect('partido_list')
-        return render(request, 'partido_form.html', {'form': form})
-
-class PartidoUpdateView(View):
-    def get(self, request, pk):
-        match = get_object_or_404(Partido, pk=pk)
-        form = PartidoForm(instance=match)
-        return render(request, 'partido_form.html', {'form': form})
-    
-    def post(self, request, pk):
-        match = get_object_or_404(Partido, pk=pk)
-        form = PartidoForm(request.POST, request.FILES, instance=match)
-        if form.is_valid():
-            form.save()
-            match.equipo_local = form.cleaned_data['equipo_local']
-            match.equipo_visitante = form.cleaned_data['equipo_visitante']
-            relacion_entre_equipos_y_partidos.objects.filter(partido=match).delete()
-            relacion_entre_equipos_y_partidos.objects.create(equipo=match.equipo_local, partido=match)
-            relacion_entre_equipos_y_partidos.objects.create(equipo=match.equipo_visitante, partido=match)
-            return redirect('partido_list')
-        return render(request, 'partido_form.html', {'form': form})
-    
-class PartidoDeleteView(View):
-    def get(self, request, pk):
-        match = get_object_or_404(Partido, pk=pk)
-        return render(request, 'partido_confirm_delete.html', {'match': match})
-    
-    def post(self, request, pk):
-        match = get_object_or_404(Partido, pk=pk)
-        match.delete()
-        return redirect('partido_list')
-    
-class ClasificacionListView(View):
-    def get(self, request):
-        clasificaciones = clasificacion.objects.all()
-        return render(request, 'clasificacion_list.html', {'clasificaciones': clasificaciones})
-    
-class ClasificacionDetailView(View):
-    def get(self, request, pk):
-        clasificacione = get_object_or_404(clasificacion, pk=pk)
-        for partido  in Partido.objects.all():
-            if partido.equipo_local == clasificacione.equipo:
-                clasificacione.partidos_jugados += 1
-                clasificacione.goles_favor += partido.goles_local
-                clasificacione.goles_contra += partido.goles_visitante
-                if partido.goles_local > partido.goles_visitante:
-                    clasificacione.partidos_ganados += 1
-                    clasificacione.puntos += 3
-                elif partido.goles_local < partido.goles_visitante:
-                    clasificacione.partidos_perdidos += 1
-                else:
-                    clasificacione.partidos_empatados += 1
-                    clasificacione.puntos += 1
-            elif partido.equipo_visitante == clasificacione.equipo:
-                clasificacione.partidos_jugados += 1
-                clasificacione.goles_favor += partido.goles_visitante
-                clasificacione.goles_contra += partido.goles_local
-                if partido.goles_local < partido.goles_visitante:
-                    clasificacione.partidos_ganados += 1
-                    clasificacione.puntos += 3
-                elif partido.goles_local > partido.goles_visitante:
-                    clasificacione.partidos_perdidos += 1
-                else:
-                    clasificacione.partidos_empatados += 1
-                    clasificacione.puntos += 1
-        return render(request, 'clasificacion_detail.html', {'clasificacione': clasificacione})
-

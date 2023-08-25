@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load render_table from django_tables2 %}
+
+{% block content %}
+  <h1>{{ title }}</h1>
+  <div id="jugador-details"></div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const jugadorData = JSON.parse('{{ data|safe }}'); // Parse the serialized data
+    
+        const jugadorDetailsElement = document.getElementById("jugador-details");
+        
+        // Create HTML elements to display jugador details
+        const detailsList = document.createElement("ul");
+        for (const [key, value] of Object.entries(jugadorData[0].fields)) {
+            const listItem = document.createElement("li");
+ if (key == "foto") {
+                listItem.innerHTML = `<img src="${value}" alt="Player Photo">`;
+            } else {
+                listItem.innerHTML = `<b>${key}:</b> ${value}`;
+            }
+            detailsList.appendChild(listItem);
+        }
+        
+        // Append the details list to the jugador details element
+        jugadorDetailsElement.appendChild(detailsList);
+    });
+    </script>
+    
+{% endblock %}

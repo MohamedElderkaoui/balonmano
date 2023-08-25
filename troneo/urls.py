@@ -1,28 +1,23 @@
+# urls.py
 from django.urls import path
-from .views import (
-    JugadorListView,
-    JugadorDetailView,
-    JugadorCreateView,
-    JugadorUpdateView,
-    JugadorDeleteView,
-    EntrenadorListView,
-    EntrenadorDetailView,
-    EntrenadorCreateView,
-    index,
-)
-from django.conf import settings
-from django.conf.urls.static import static
+from .views import JugadorListView, home,JugadorDetailView, JugadorCreateView, JugadorUpdateView, JugadorDeleteView, EntrenadorListView, EntrenadorDetailView, EntrenadorCreateView, EntrenadorUpdateView, EntrenadorDeleteView
+
+app_name = 'jugadores'
 
 urlpatterns = [
-    path('', index, name='index'),
-    path('jugadores/', JugadorListView.as_view(), name='jugador_list'),
-    path('jugadores/<int:pk>/', JugadorDetailView.as_view(), name='jugador_detail'),
-    path('jugadores/create/', JugadorCreateView.as_view(), name='jugador_create'),
-    path('jugadores/update/<int:pk>/', JugadorUpdateView.as_view(), name='jugador_update'),
-    path('jugadores/delete/<int:pk>/', JugadorDeleteView.as_view(), name='jugador_delete'),
+    path('', home, name='home'),
     
-    path('entrenadores/', EntrenadorListView.as_view(), name='entrenador_list'),
-    path('entrenadores/<int:pk>/', EntrenadorDetailView.as_view(), name='entrenador_detail'),
-    path('entrenadores/create/', EntrenadorCreateView.as_view(), name='entrenador_create'),
-    # Add more URL patterns as needed
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('jugador-list/', JugadorListView.as_view(), name='jugador-list'),
+    path('jugador-list/<int:pk>/', JugadorDetailView.as_view(), name='jugador-detail'),
+    path('jugador-list/create/', JugadorCreateView.as_view(), name='jugador-create'),
+    path('jugador-list/<int:pk>/update/', JugadorUpdateView.as_view(), name='jugador-update'),
+    path('jugador-list/<int:pk>/delete/', JugadorDeleteView.as_view(), name='jugador-delete'),
+    
+    path('entrenador-list/', EntrenadorListView.as_view(), name='entrenador-list'),
+    path('entrenador-list/<int:pk>/', EntrenadorDetailView.as_view(), name='entrenador-detail'),
+    path('entrenador-list/create/', EntrenadorCreateView.as_view(), name='entrenador-create'),
+    path('entrenador-list/<int:pk>/update/', EntrenadorUpdateView.as_view(), name='entrenador-update'),
+    path('entrenador-list/<int:pk>/delete/', EntrenadorDeleteView.as_view(), name='entrenador-delete'),
+
+    # ... Other URL patterns for your app ...
+]

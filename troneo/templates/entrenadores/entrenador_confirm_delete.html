@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- jugador_confirm_delete.html -->
+<p>Are you sure you want to delete {{ entrenador_object.nombre }}?</p>
+<button id="confirm-delete">Delete</button>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const confirmButton = document.querySelector('#confirm-delete');
+        confirmButton.addEventListener('click', function (e) {
+            const confirmed = confirm('Are you sure you want to delete?');
+            if (confirmed) {
+                // Send an AJAX request or navigate to the delete URL
+                // Example: window.location.href = '/jugadores/{{ player.pk }}/delete/';
+                const url = '/jugadores/{{ player.pk }}/delete/';
+
+
+            } else {
+                // If the user clicked cancel, do nothing
+                e.preventDefault();
+            }
+        });
+    });
+</script>
+
+{% endblock %}
